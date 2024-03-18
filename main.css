@@ -1,48 +1,56 @@
-form {
-    margin-top: 40px;
+* {
+    padding: 0;
+    margin: 0;
 }
 
-input, textarea, button {
-    display: block;
-    padding: 8px;
-    margin-bottom: 8px;
+body{
+    background-color: black;
+    color: white;
+}
+
+.container, h1{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container{
     width: 100%;
-    resize: none;
+    flex-direction: row;
+    align-items: center;
 }
 
-button {
-    background-color: #2ecc71;
-    border: none;
-    text-transform: uppercase;
-    color: #fff;
-    font-weight: bold;
-    font-size: 18px;
-    font-style: italic;
-    cursor: pointer;
+.box{
+    height: 300px;
+    width: 300px;
 }
 
-button:hover {
-    background-color: #27ae60;    
+input, button, span{
+    display: block;
 }
 
-.success-message {
-    background-color: #27ae60;
-    padding: 16px;
-    color: #fff;
-    display: none;    
+input{
+    width: 100%;
+    margin-bottom:20px;
 }
 
-.error-message {
-    font-size: 12px;
-    padding: 8px;
+button{
+    background-color: white;
+    color:black;
+    margin: 0 auto;
+}
+
+span{
+    display:none;
+}
+
+#saquerealizado{
+    border-radius: 2px;
+    background-color: green;
+}
+
+#erro{
+    border-radius:2px;
     background-color: red;
-    color: #fff;
-    margin-bottom: 8px;
-    display: none;
-}
-
-input.error {
-    color: red;
-    border-color: red;
-    outline-color: red;
 }

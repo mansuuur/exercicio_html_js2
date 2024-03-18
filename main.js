@@ -1,45 +1,31 @@
-const form = document.getElementById('form-deposito');
-const primeiroValor = document.getElementById('nome-beneficiario');
+const form = document.getElementById('form');
+const saldo = document.getElementById('saldo');
+const saque = document.getElementById('saque');
+const acerto = document.getElementById('saquerealizado');
+const erro = document.getElementById('erro');
 
-function validaNome(nomeCompleto) {
-    const nomeComoArray = nomeCompleto.split(' ');
-    return nomeComoArray.length >= 2;
+function sacandoDinheiro(saldo, saque){
+    return saldo > saque;
 }
 
-form.addEventListener('submit', function(e) {
-    let formEValido = false;
+form.addEventListener('submit', function(e){
     e.preventDefault();
 
-    const segundoValor = document.getElementById('segundoValor');   
-    const mensagemSucesso = `O número <b>${primeiroValor.value}</b> é menor que o número <b>${segundoValor.value}</b>`;
-
-
-
-    formEValido = validaNome(primeiroValor < segundoValor)
-    if (formEValido) {       
-        const containerMensagemSucesso = document.querySelector('success-message');
-        containerMensagemSucesso.innerHTML = mensagemSucesso;
-        containerMensagemSucesso.style.display = 'block';
-
-        primeiroValor.value = '';
-        segundoValor.value = '';
-        
-    } else{
-        primeiroValor.style.border = '1px solid red'
-        document.querySelector('error-message').style.display = 'block';
-    }    
-});
-
-
-primeiroValor.addEventListener('keyup', function(e){
-    console.log(e.target.value);
-    formEValido = validaNome(e.target.value);
-
-    if (!formEValido) {
-        primeiroValor.classList.add('error')        
-        document.querySelector('.error-message').style.display ='block';
-    } else {
-        primeiroValor.classList.remove('error')   
-        document.querySelector('.error-message').style.display = 'none';
+    let validarForm = sacandoDinheiro(saldo.valueAsNumber, saque.valueAsNumber)
+    if(validarForm){
+        acerto.style.display = 'block';
+        saldo.value='';
+        saque.value='';
     }
-});
+})
+
+saque.addEventListener('keyup', function(e){
+    let validarForm = sacandoDinheiro(saldo.valueAsNumber, saque.valueAsNumber)
+    if(!validarForm){
+        erro.style.display = 'block';
+        acerto.style.display = 'none';
+    } else{
+        erro.style.display = 'none';
+    }
+
+})
